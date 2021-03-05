@@ -20,13 +20,13 @@ if (empty($_COOKIE['remember_me'])) {
 
 if (isset($_POST['add-submit'])) {
 
-    
-$name = $_POST["name"];
-$email = $_POST["email"];
-$password = $_POST["password"];
-$address = $_POST["address"];
-$role = 2;
-$status = $_POST["status"];
+
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $address = $_POST["address"];
+    $role = 2;
+    $status = $_POST["status"];
 
 
 
@@ -94,13 +94,13 @@ $status = $_POST["status"];
 
 if (isset($_POST['upd-submit'])) {
 
-    
-$name = $_POST["name"];
-$email = $_POST["email"];
-$password = $_POST["password"];
-$address = $_POST["address"];
-$role = 2;
-$status = $_POST["status"];
+
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $address = $_POST["address"];
+    $role = 2;
+    $status = $_POST["status"];
 
 
 
@@ -175,7 +175,7 @@ $status = $_POST["status"];
 
 if (isset($_GET['id'])) {
 
-    $del_id=$_GET["id"];
+    $del_id = $_GET["id"];
 
     $del = $conn->prepare("DELETE FROM users WHERE id='$del_id'");
 

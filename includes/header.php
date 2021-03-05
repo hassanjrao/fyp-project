@@ -1,38 +1,48 @@
 <div class="col-md-6 col-sm-8 clearfix">
-		
-				<ul class="user-info pull-left pull-none-xsm">
-		
-					<!-- Profile Info -->
-					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-		
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
-							<?php echo ucwords($_SESSION["user_name"]); ?>
-						</a>
-		
-						<ul class="dropdown-menu">
-		
-							<!-- Reverse Caret -->
-							<li class="caret"></li>
-		
-							<!-- Profile sub-links -->
-							<li>
-								<a href="extra-timeline.html">
-									<i class="entypo-user"></i>
-									Edit Profile
-								</a>
-							</li>
-		
-						
-						</ul>
-					</li>
-		
-				</ul>
-				
-				<!-- <ul class="user-info pull-left pull-right-xs pull-none-xsm"> -->
-		
-					<!-- Raw Notifications -->
-					<!-- <li class="notifications dropdown">
+
+	<?php
+	$user_id = $_SESSION["user_id"];
+
+	$query = $conn->prepare("SELECT * FROM users where id='$user_id'");
+	$query->execute();
+	$result = $query->fetch(PDO::FETCH_ASSOC);
+
+	?>
+
+	<ul class="user-info pull-left pull-none-xsm">
+
+		<!-- Profile Info -->
+		<li class="profile-info dropdown">
+			<!-- add class "pull-right" if you want to place this from right -->
+
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				<img src=" <?php echo $result["image"] != NULL ? "images/vendor_images/" . $result['image'] : "assets/images/thumb-1@2x.png" ?>" alt="" class="img-circle" width="44" />
+				<?php echo ucwords($result["name"]); ?>
+			</a>
+
+			<ul class="dropdown-menu">
+
+				<!-- Reverse Caret -->
+				<li class="caret"></li>
+
+				<!-- Profile sub-links -->
+				<li>
+					<a href="extra-timeline.html">
+						<i class="entypo-user"></i>
+						Edit Profile
+					</a>
+				</li>
+
+
+			</ul>
+		</li>
+
+	</ul>
+
+	<!-- <ul class="user-info pull-left pull-right-xs pull-none-xsm"> -->
+
+	<!-- Raw Notifications -->
+	<!-- <li class="notifications dropdown">
 		
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 							<i class="entypo-attention"></i>
@@ -141,9 +151,9 @@
 						</ul>
 		
 					</li> -->
-		
-					<!-- Message Notifications -->
-					<!-- <li class="notifications dropdown">
+
+	<!-- Message Notifications -->
+	<!-- <li class="notifications dropdown">
 		
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 							<i class="entypo-mail"></i>
@@ -238,8 +248,8 @@
 		
 					</li>
 		 -->
-					<!-- Task Notifications -->
-					<!-- <li class="notifications dropdown">
+	<!-- Task Notifications -->
+	<!-- <li class="notifications dropdown">
 		
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 							<i class="entypo-list"></i>
@@ -346,19 +356,19 @@
 						</ul>
 		
 					</li> -->
-		
-				<!-- </ul> -->
-		
-			</div>
-		
-		
-			<!-- Raw Links -->
-			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-		
-				<ul class="list-inline links-list pull-right">
-		
-					
-					<!-- <li class="dropdown language-selector">
+
+	<!-- </ul> -->
+
+</div>
+
+
+<!-- Raw Links -->
+<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+
+	<ul class="list-inline links-list pull-right">
+
+
+		<!-- <li class="dropdown language-selector">
 		
 						Language: &nbsp;
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
@@ -411,14 +421,14 @@
 							<span class="badge badge-success chat-notifications-badge is-hidden">0</span>
 						</a>
 					</li> -->
-		
-					<li class="sep"></li>
-		
-					<li>
-						<a href="logout.php">
-							Log Out <i class="entypo-logout right"></i>
-						</a>
-					</li>
-				</ul>
-		
-			</div>
+
+		<li class="sep"></li>
+
+		<li>
+			<a href="logout.php">
+				Log Out <i class="entypo-logout right"></i>
+			</a>
+		</li>
+	</ul>
+
+</div>

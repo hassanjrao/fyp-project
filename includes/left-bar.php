@@ -77,6 +77,15 @@
 			</li>
 
 
+			<li class="">
+				<a href="vendor_profile.php">
+					<i class="entypo-gauge"></i>
+					<span class="title">Profile Setting</span>
+				</a>
+
+			</li>
+
+
 
 			<!-- <li class="has-sub">
 				<a href="#">
