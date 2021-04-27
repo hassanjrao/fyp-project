@@ -1,7 +1,5 @@
 <?php
 
-// $user_type_arr = $_SESSION["user_access_arr"];
-
 
 ?>
 
@@ -52,29 +50,76 @@
 			</li>
 
 
-
-			<li class="has-sub">
-				<a href="#">
-					<i class="entypo-layout"></i>
-					<span class="title">Vendors</span>
-				</a>
-				<ul>
-					<li>
-						<a href="add_vendors.php">
-							<span class="title">Add Vendors</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="all_vendors.php">
-							<span class="title">All Vendors</span>
-						</a>
-
-					</li>
+			<?php
+			if ($_SESSION['role'] == 1) {
 
 
-				</ul>
-			</li>
+
+			?>
+
+				<li class="has-sub">
+					<a href="#">
+						<i class="entypo-layout"></i>
+						<span class="title">Vendors</span>
+					</a>
+					<ul>
+						<li>
+							<a href="add_vendors.php">
+								<span class="title">Add Vendors</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="all_vendors.php">
+								<span class="title">All Vendors</span>
+							</a>
+
+						</li>
+
+
+					</ul>
+				</li>
+
+			<?php
+			}
+			?>
+
+
+
+			<?php
+			if ($_SESSION['role'] == 2) {
+
+
+
+			?>
+
+				<li class="has-sub">
+					<a href="#">
+						<i class="entypo-layout"></i>
+						<span class="title">Products</span>
+					</a>
+					<ul>
+						<li>
+							<a href="add_products.php">
+								<span class="title">Add Products</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="all_products.php">
+								<span class="title">All Products</span>
+							</a>
+
+						</li>
+
+
+					</ul>
+				</li>
+
+			<?php
+			}
+			?>
+
 
 
 			<li class="">

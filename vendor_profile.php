@@ -142,6 +142,14 @@ if (empty($_COOKIE['remember_me'])) {
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="field-1" class="col-sm-3 control-label">Price Per Litre</label>
+
+                                    <div class="col-sm-5">
+                                        <input type="number" name="price_per_litre" value="<?php echo $result["price_per_litre"]=="" || NULL ? "" : $result["price_per_litre"] ; ?>" class="form-control" id="field-1" placeholder="Price Per Litre">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="field-1" class="col-sm-3 control-label">Vendor Email</label>
 
                                     <div class="col-sm-5">

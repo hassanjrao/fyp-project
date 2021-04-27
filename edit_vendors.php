@@ -11,9 +11,9 @@ if (empty($_COOKIE['remember_me'])) {
     }
 }
 
-// if(!in_array(4,$_SESSION["vendor_access_arr"])){
-// 	header('location:index.php');
-// }
+if($_SESSION['role']!=1){
+    header('location:index.php');
+}
 ?>
 
 <!DOCTYPE html>

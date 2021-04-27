@@ -14,15 +14,21 @@ if (empty($_COOKIE['remember_me'])) {
 
 
 
+
+
+
+
+
+
+
+
 if (isset($_POST['upd-submit'])) {
 
 
-    $name = $_POST["name"];
-    $price_per_litre = $_POST["price_per_litre"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $address = $_POST["address"];
-    $vendor_id = $_POST["vendor_id"];
+    $litre = $_POST["litre"];
+    $price = $_POST["price"];
+
+    $vendor_id = $_SESSION["user_id"];
 
     $updated_by = $_SESSION["user_id"];
 
@@ -46,37 +52,37 @@ if (isset($_POST['upd-submit'])) {
 
         if ($_FILES['image']['size'] == 0) {
 
-           
-
-            $stmt = $conn->prepare("UPDATE `users` SET name=:name,email=:email, password=:password,address=:address,price_per_litre=:price_per_litre,updated_by=:updated_by,updated_at=CURRENT_TIMESTAMP WHERE id=:id");
 
 
-            $stmt->bindParam(':name', $name);
+            $stmt = $conn->prepare("UPDATE `users` SET litre=:litre,email=:email, password=:password,address=:address,price=:price,updated_by=:updated_by,updated_at=CURRENT_TIMESTAMP WHERE id=:id");
+
+
+            $stmt->bindParam(':litre', $litre);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $password);
             $stmt->bindParam(':address', $address);
-            $stmt->bindParam(':price_per_litre', $price_per_litre);
+            $stmt->bindParam(':price', $price);
             $stmt->bindParam(':updated_by', $updated_by);
 
             $stmt->bindParam(':id', $vendor_id);
         } else {
 
 
-           
+
             $folder = "../images/vendor_images/";
-            $image =  $_FILES['image']['name'];
+            $image =  $_FILES['image']['litre'];
             $path = $folder . $image;
 
-            move_uploaded_file($_FILES['image']['tmp_name'], $path);
+            move_uploaded_file($_FILES['image']['tmp_litre'], $path);
 
-            $stmt = $conn->prepare("UPDATE `users` SET name=:name,email=:email, password=:password,address=:address,image=:image,price_per_litre=:price_per_litre,updated_by=:updated_by,updated_at=CURRENT_TIMESTAMP WHERE id=:id");
+            $stmt = $conn->prepare("UPDATE `users` SET litre=:litre,email=:email, password=:password,address=:address,image=:image,price=:price,updated_by=:updated_by,updated_at=CURRENT_TIMESTAMP WHERE id=:id");
 
 
-            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':litre', $litre);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $password);
             $stmt->bindParam(':address', $address);
-            $stmt->bindParam(':price_per_litre', $price_per_litre);
+            $stmt->bindParam(':price', $price);
             $stmt->bindParam(':image', $image);
             $stmt->bindParam(':updated_by', $updated_by);
 
@@ -90,7 +96,7 @@ if (isset($_POST['upd-submit'])) {
         if ($stmt->execute()) {
 
 
-            $_SESSION["price_per_litre"]=$price_per_litre;
+            $_SESSION["price"] = $price;
             $response_arr[0] = "success";
 
             $response_arr[1] = ' <div class="alert alert-success alert-dismissible" role="alert">

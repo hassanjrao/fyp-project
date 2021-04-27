@@ -11,7 +11,7 @@ if (empty($_COOKIE['remember_me'])) {
     }
 }
 
-if($_SESSION['role']!=1){
+if ($_SESSION['role'] != 2) {
     header('location:index.php');
 }
 
@@ -22,7 +22,7 @@ if($_SESSION['role']!=1){
 <head>
     <?php include_once("includes/head.php"); ?>
 
-    <title>All Vendors</title>
+    <title>All Products</title>
 </head>
 
 <body class="page-body" data-url="http://neon.dev">
@@ -57,24 +57,24 @@ if($_SESSION['role']!=1){
                 </li>
                 <li>
 
-                    <a href="#">Vendors</a>
+                    <a href="#">Products</a>
                 </li>
                 <li class="active">
 
-                    <strong>All Vendors</strong>
+                    <strong>All Products</strong>
                 </li>
             </ol>
 
-            <h2>All Vendors</h2>
+            <h2>All Products</h2>
 
             <?php
 
-            if (isset($_GET["status"])) {
+            if (isset($_GET["request"])) {
 
-             
-                if ($_GET["status"] == "del_succ") {
 
-                ?>
+                if ($_GET["request"] == "success") {
+
+            ?>
                     <br>
                     <div class="alert alert-success alert-dismissible" role="alert">
                         <strong>Congrats!</strong> Successfully Deleted
@@ -83,19 +83,20 @@ if($_SESSION['role']!=1){
                         </button>
                     </div>
                 <?php
-                }
-                if ($_GET["status"] == "del_fail") {
+                } else {
 
                 ?>
                     <br>
                     <div class="alert alert-success alert-danger" role="alert">
-                        <strong>Congrats!</strong> Something Went Wrong, Deltetion Failed
+                        <strong>Congrats!</strong> Something Went Wrong, <?php echo $_GET["request"]; ?>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
             <?php
                 }
+
+              
             }
 
             ?>
@@ -132,12 +133,9 @@ if($_SESSION['role']!=1){
             <table class="table table-bordered datatable  dt-responsive nowrap" id="table-2">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Address</th>
-                        <th>Status</th>
+                        <th>#</th>
+                        <th>Litre</th>
+                        <th>Total Price</th>
                         <th>Created at</th>
 
                         <th>Updated at</th>
@@ -152,9 +150,10 @@ if($_SESSION['role']!=1){
 
                     $i = 1;
 
+                    $vendor_id = $_SESSION["user_id"];
 
                     $query = $conn->prepare(
-                        "SELECT * from users where role='2' order by id desc"
+                        "SELECT * from products where vendor_id='$vendor_id'"
                     );
                     $query->execute();
                     while ($result = $query->fetch(PDO::FETCH_ASSOC)) {
@@ -163,11 +162,8 @@ if($_SESSION['role']!=1){
 
                         <tr>
                             <td><?php echo $i++; ?></td>
-                            <td><?php echo $result["name"]; ?></td>
-                            <td><?php echo $result["email"]; ?></td>
-                            <td><?php echo $result["password"]; ?></td>
-                            <td><?php echo $result["address"]; ?></td>
-                            <td><?php echo $result["status"]; ?></td>
+                            <td><?php echo $result["litre"]; ?></td>
+                            <td><?php echo $result["price"]; ?></td>
                             <td><?php echo $result["created_at"]; ?></td>
 
                             <td><?php echo $result["updated_at"]; ?></td>
@@ -176,12 +172,12 @@ if($_SESSION['role']!=1){
 
 
                             <td>
-                                <a href="edit_vendors.php?vendor_id=<?php echo $result["id"] ?>" class="btn btn-default btn-sm btn-icon icon-left">
+                                <a href="edit_products.php?product_id=<?php echo $result["id"] ?>" class="btn btn-default btn-sm btn-icon icon-left">
                                     <i class="entypo-pencil"></i>
                                     Edit
                                 </a>
 
-                                <a href="send_data/send_vendor_data.php?id=<?php echo $result["id"] 
+                                <a href="delete_product.php?id=<?php echo $result["id"]
                                                                 ?>" class="btn btn-danger btn-sm btn-icon icon-left">
                                     <i class="entypo-cancel"></i>
                                     Delete

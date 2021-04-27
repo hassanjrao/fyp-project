@@ -90,10 +90,12 @@ session_start();
 							$_SESSION['user_id'] = $result11['id'];
 							$_SESSION["user_name"] = $result11['name'];
 							$_SESSION['role'] = $result11["role"];
+							$_SESSION['price_per_litre'] = $result11["price_per_litre"];
 						} else {
 							$_SESSION['user_id'] = $result11['id'];
 							$_SESSION["user_name"] = $result11['name'];
 							$_SESSION['role'] = $result11["role"];
+							$_SESSION['price_per_litre'] = $result11["price_per_litre"];
 						}
 
 						// var_dump($_SESSION);
