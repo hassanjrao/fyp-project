@@ -93,6 +93,8 @@ function isTheseParametersAvailable($params) //method to check whther the varaib
     foreach ($params as $param) {
         if (!isset($_POST[$param])) {
             return false;
+
+       
         }
     }
     return true;
