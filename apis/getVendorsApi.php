@@ -26,8 +26,7 @@ try {
 
 
 } catch (PDOException $e) {
-    echo "Error: " . 
-
+  
     $response['error'] = true;
     $response["status"] = "fail";
     $response['message'] = $e->getMessage();;
