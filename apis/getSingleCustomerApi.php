@@ -8,14 +8,14 @@ include('../includes/db.php');
 
 $response = array();
 
-if (isTheseParametersAvailable(array('vendor_id'))) {
+if (isTheseParametersAvailable(array('customer_id'))) {
 
 
-    $vendor_id = $_GET["vendor_id"];
+    $customer_id = $_GET["customer_id"];
 
 
     try {
-        $query = $conn->prepare("SELECT * FROM users WHERE role='3' and id='$vendor_id'");
+        $query = $conn->prepare("SELECT * FROM users WHERE role='3' and id='$customer_id'");
         $query->execute();
 
         $result = $query->fetchAll(PDO::FETCH_OBJ);
