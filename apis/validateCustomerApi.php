@@ -17,13 +17,17 @@ if (isTheseParametersAvailable(array('customer_email', 'customer_password'))) {
 
     $query = $conn->prepare("SELECT * FROM users WHERE `email` LIKE '$customer_email' and `password` = '$customer_password'");
     $query->execute();
+   
 
 
 
     if ($query->rowCount() > 0) {
+        $result = $query->fetchAll(PDO::FETCH_OBJ);
         $response['error'] = false;
         $response["status"] = "success";
         $response['message'] = 'Login Successfull';
+        $response['result'] = $result;
+        
     } else {
         $response['error'] = true;
         $response["status"] = "fail";
