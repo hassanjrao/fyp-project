@@ -15,7 +15,7 @@ if (isTheseParametersAvailable(array('customer_email', 'customer_password'))) {
     $customer_password = $_POST["customer_password"];
 
 
-    $query = $conn->prepare("SELECT email,password FROM users WHERE `email` LIKE '$customer_email' and `password` = '$customer_password'");
+    $query = $conn->prepare("SELECT * FROM users WHERE `email` LIKE '$customer_email' and `password` = '$customer_password'");
     $query->execute();
 
 
