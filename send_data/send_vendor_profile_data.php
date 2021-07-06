@@ -17,11 +17,17 @@ if (empty($_COOKIE['remember_me'])) {
 if (isset($_POST['upd-submit'])) {
 
 
+
     $name = $_POST["name"];
     $price_per_litre = $_POST["price_per_litre"];
     $email = $_POST["email"];
     $password = $_POST["password"];
     $address = $_POST["address"];
+    $city = $_POST["city"];
+    $state = $_POST["state"];
+    $country = $_POST["country"];
+    $lat = $_POST["lati"];
+    $lng = $_POST["lngt"];
     $vendor_id = $_POST["vendor_id"];
 
     $updated_by = $_SESSION["user_id"];
@@ -48,13 +54,18 @@ if (isset($_POST['upd-submit'])) {
 
            
 
-            $stmt = $conn->prepare("UPDATE `users` SET name=:name,email=:email, password=:password,address=:address,price_per_litre=:price_per_litre,updated_by=:updated_by,updated_at=CURRENT_TIMESTAMP WHERE id=:id");
+            $stmt = $conn->prepare("UPDATE `users` SET name=:name,email=:email, password=:password,address=:address,city=:city,state=:state,country=:country,lat=:lat, lng=:lng,price_per_litre=:price_per_litre,updated_by=:updated_by,updated_at=CURRENT_TIMESTAMP WHERE id=:id");
 
 
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $password);
             $stmt->bindParam(':address', $address);
+            $stmt->bindParam(':city', $city);
+            $stmt->bindParam(':state', $state);
+            $stmt->bindParam(':country', $country);
+            $stmt->bindParam(':lat', $lat);
+            $stmt->bindParam(':lng', $lng);
             $stmt->bindParam(':price_per_litre', $price_per_litre);
             $stmt->bindParam(':updated_by', $updated_by);
 

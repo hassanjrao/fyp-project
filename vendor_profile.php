@@ -25,6 +25,164 @@ if (empty($_COOKIE['remember_me'])) {
     <?php include_once("includes/head.php"); ?>
 
     <title>Profile Setting</title>
+
+
+
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+
+        #locationField,
+        #controls {
+            position: relative;
+            width: 480px;
+        }
+
+        #autocomplete {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 99%;
+        }
+
+        .label {
+            text-align: right;
+            font-weight: bold;
+            width: 100px;
+            color: #303030;
+            font-family: "Roboto", Arial, Helvetica, sans-serif;
+        }
+
+        #address {
+            border: 1px solid #000090;
+            background-color: #f0f9ff;
+            width: 480px;
+            padding-right: 2px;
+        }
+
+        #address td {
+            font-size: 10pt;
+        }
+
+        .field {
+            width: 99%;
+        }
+
+        .slimField {
+            width: 80px;
+        }
+
+        .wideField {
+            width: 200px;
+        }
+
+        #locationField {
+            height: 20px;
+            margin-bottom: 2px;
+        }
+    </style>
+
+
+    
+  
+
+
+<script>
+    // This sample uses the Autocomplete widget to help the user select a
+    // place, then it retrieves the address components associated with that
+    // place, and then it populates the form fields with those details.
+    // This sample requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script
+    // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+    let placeSearch;
+    let autocomplete;
+    const componentForm = {
+        // street_number: "short_name",
+        // route: "long_name",
+        locality: "long_name",
+        administrative_area_level_1: "short_name",
+        country: "long_name",
+        // postal_code: "short_name",
+
+
+    };
+
+    function initAutocomplete() {
+        // Create the autocomplete object, restricting the search predictions to
+        // geographical location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById("autocomplete"), {
+                types: ["geocode"]
+            }
+        );
+        // Avoid paying for data that you don't need by restricting the set of
+        // place fields that are returned to just the address components.
+        autocomplete.setFields(["address_component", "geometry"]);
+        // When the user selects an address from the drop-down, populate the
+        // address fields in the form.
+        autocomplete.addListener("place_changed", fillInAddress);
+    }
+
+    function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        const place = autocomplete.getPlace();
+
+        console.log(place);
+
+        for (const component in componentForm) {
+            document.getElementById(component).value = "";
+            document.getElementById(component).disabled = false;
+        }
+
+        // Get each component of the address from the place details,
+        // and then fill-in the corresponding field on the form.
+        for (const component of place.address_components) {
+            const addressType = component.types[0];
+
+            if (componentForm[addressType]) {
+                const val = component[componentForm[addressType]];
+                document.getElementById(addressType).value = val;
+            }
+        }
+
+        document.getElementById("lati").value = "";
+        document.getElementById("lati").disabled = false;
+
+        document.getElementById("lngt").value = "";
+        document.getElementById("lngt").disabled = false;
+
+        document.getElementById("lati").value = place.geometry.location.lat();
+        document.getElementById("lngt").value = place.geometry.location.lng();
+    }
+
+    // Bias the autocomplete object to the user's geographical location,
+    // as supplied by the browser's 'navigator.geolocation' object.
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const geolocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+                const circle = new google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy,
+                });
+                autocomplete.setBounds(circle.getBounds());
+            });
+        }
+    }
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj9usER0ugIW7lhWuU7NKDEq_gtNM0-zQ&callback=initAutocomplete&libraries=places&v=weekly" async></script>
+
 </head>
 
 <body class="page-body">
@@ -80,7 +238,7 @@ if (empty($_COOKIE['remember_me'])) {
 
                         <div class="panel-heading">
                             <div class="panel-title">
-                               Edit Profile
+                                Edit Profile
                             </div>
 
                             <div class="panel-options">
@@ -115,7 +273,7 @@ if (empty($_COOKIE['remember_me'])) {
                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
 
 
-                                                <img src=" <?php echo $result["image"] != NULL ? "images/vendor_images/".$result['image'] : "http://placehold.it/200x150" ?>" alt="...">
+                                                <img src=" <?php echo $result["image"] != NULL ? "images/vendor_images/" . $result['image'] : "http://placehold.it/200x150" ?>" alt="...">
                                             </div>
                                             <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
                                             <div>
@@ -137,7 +295,7 @@ if (empty($_COOKIE['remember_me'])) {
                                     <label for="field-1" class="col-sm-3 control-label">Vendor Name</label>
 
                                     <div class="col-sm-5">
-                                        <input type="text" name="name" value="<?php echo $result["name"]=="" || NULL ? "" : $result["name"] ; ?>" class="form-control" id="field-1" placeholder="Vendor Name">
+                                        <input type="text" name="name" value="<?php echo $result["name"] == "" || NULL ? "" : $result["name"]; ?>" class="form-control" id="field-1" placeholder="Vendor Name">
                                     </div>
                                 </div>
 
@@ -145,7 +303,7 @@ if (empty($_COOKIE['remember_me'])) {
                                     <label for="field-1" class="col-sm-3 control-label">Price Per Litre</label>
 
                                     <div class="col-sm-5">
-                                        <input type="number" name="price_per_litre" value="<?php echo $result["price_per_litre"]=="" || NULL ? "" : $result["price_per_litre"] ; ?>" class="form-control" id="field-1" placeholder="Price Per Litre">
+                                        <input type="number" name="price_per_litre" value="<?php echo $result["price_per_litre"] == "" || NULL ? "" : $result["price_per_litre"]; ?>" class="form-control" id="field-1" placeholder="Price Per Litre">
                                     </div>
                                 </div>
 
@@ -153,7 +311,7 @@ if (empty($_COOKIE['remember_me'])) {
                                     <label for="field-1" class="col-sm-3 control-label">Vendor Email</label>
 
                                     <div class="col-sm-5">
-                                        <input required="" type="email" name="email" value="<?php echo $result["email"]=="" || NULL ? "" : $result["email"] ; ?>" class="form-control" id="field-1" placeholder="Email">
+                                        <input required="" type="email" name="email" value="<?php echo $result["email"] == "" || NULL ? "" : $result["email"]; ?>" class="form-control" id="field-1" placeholder="Email">
                                     </div>
                                 </div>
 
@@ -162,18 +320,71 @@ if (empty($_COOKIE['remember_me'])) {
                                     <label for="field-3" class="col-sm-3 control-label">Vendor Password</label>
 
                                     <div class="col-sm-5">
-                                        <input required="" type="password" name="password" value="<?php echo $result["password"]=="" || NULL ? "" : $result["password"] ; ?>" class="form-control" id="field-3" placeholder="Password">
+                                        <input required="" type="password" name="password" value="<?php echo $result["password"] == "" || NULL ? "" : $result["password"]; ?>" class="form-control" id="field-3" placeholder="Password">
                                     </div>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label for="field-1" class="col-sm-3 control-label">Vendor Address</label>
+
+
+
+
+                                    <label for="field-3" class="col-sm-3 control-label">Address</label>
+
 
                                     <div class="col-sm-5">
-                                        <textarea name="address" class="form-control" id="field-1"  placeholder="Vendor Address"><?php echo $result["address"]=="" || NULL ? "" : $result["address"] ; ?></textarea>
+                                        <input id="autocomplete" name="address" class="form-control" value="<?php echo $result['address'] ?>" placeholder="Enter your address" onFocus="geolocate()" type="text" />
+
                                     </div>
+
                                 </div>
+
+
+                                <div class="form-group">
+
+
+
+
+                                    <label for="field-3" class="col-sm-3 control-label">City</label>
+
+
+                                    <div class="col-sm-5">
+                                        <input name="city" value="<?php echo $result['city'] ?>" class="field form-control" id="locality" />
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="field-3" class="col-sm-3 control-label">State</label>
+
+
+                                    <div class="col-sm-5">
+                                        <input name="state" value="<?php echo $result['state'] ?>" class="field form-control" id="administrative_area_level_1" />
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="field-3" class="col-sm-3 control-label">Contry</label>
+
+
+                                    <div class="col-sm-5">
+                                        <input name="country" value="<?php echo $result['country'] ?>" class="field form-control" id="country" />
+
+                                    </div>
+
+                                </div>
+
+
+                                <input name="lati" type="hidden" value="<?php echo $result['lat'] ?>" class="field" id="lati" />
+
+                                <input name="lngt" type="hidden" value="<?php echo $result['lng'] ?>" class="field" id="lngt" />
+
 
 
 
@@ -235,10 +446,11 @@ if (empty($_COOKIE['remember_me'])) {
 
     <script src="assets/js/jquery.validate.min.js"></script>
 
+
+
+
     <script>
         function sendFormData() {
-
-
             $('#form').validate({ // initialize the plugin
                 ignore: [],
 
@@ -256,7 +468,16 @@ if (empty($_COOKIE['remember_me'])) {
                     password: {
                         required: true,
                     },
-                    status: {
+                    address: {
+                        required: true,
+                    },
+                    city: {
+                        required: true,
+                    },
+                    state: {
+                        required: true,
+                    },
+                    country: {
                         required: true,
                     }
 
@@ -264,6 +485,8 @@ if (empty($_COOKIE['remember_me'])) {
                 },
                 submitHandler: function(form) { // for demo
                     var form_data = new FormData($("#form")[0]);
+
+
 
                     console.log(form_data);
 
