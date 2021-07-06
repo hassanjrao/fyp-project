@@ -3,6 +3,7 @@ ob_start();
 include('includes/db.php');
 session_start();
 
+
 if (empty($_COOKIE['remember_me'])) {
 
 	if (empty($_SESSION['user_id'])) {
@@ -27,7 +28,7 @@ if (empty($_COOKIE['remember_me'])) {
 
 </head>
 
-<body class="page-body  page-fade" data-url="http://neon.dev">
+<body class="page-body  page-fade">
 
 	<div class="page-container">
 		<!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
@@ -53,29 +54,33 @@ if (empty($_COOKIE['remember_me'])) {
 
 			<?php
 
-			// $query = $conn->prepare("SELECT id from artists");
-			// $query->execute();
-			// $total_artists=$query->rowCount();
+			$query = $conn->prepare("SELECT id from users where role='2'");
+			$query->execute();
+			$total_vendors = $query->rowCount();
+
+			$query = $conn->prepare("SELECT id from users where role='3'");
+			$query->execute();
+			$total_customers = $query->rowCount();
 
 
-			// $query = $conn->prepare("SELECT id from songs");
-			// $query->execute();
-			// $total_songs=$query->rowCount();
+			$query = $conn->prepare("SELECT id from orders");
+			$query->execute();
+			$total_orders = $query->rowCount();
 
 
-			// $query = $conn->prepare("SELECT id from dj_sets");
-			// $query->execute();
-			// $total_dj_sets=$query->rowCount();
+			$query = $conn->prepare("SELECT id from products");
+			$query->execute();
+			$total_products = $query->rowCount();
 
 
 			// $query = $conn->prepare("SELECT id from show_episodes");
 			// $query->execute();
 
-			// $total_show_episodes=$query->rowCount();
+			// $total_show_episodes = $query->rowCount();
 
 
 
-			
+
 			?>
 
 
@@ -85,13 +90,37 @@ if (empty($_COOKIE['remember_me'])) {
 			<div class="row">
 				<div class="col-sm-3 col-xs-6">
 
-					<div class="tile-stats tile-red">
-						<div class="icon"><i class="entypo-users"></i></div>
-						<div class="num" data-start="0" data-end="<?php echo "100" //$total_artists ?>" data-postfix="" data-duration="1500" data-delay="0">0</div>
+					<?php
+					if ($_SESSION['role'] == 1) {
+					
+					?>
 
-						<h3>Total Artists</h3>
-						
-					</div>
+						<div class="tile-stats tile-red">
+							<div class="icon"><i class="entypo-users"></i></div>
+							<div class="num" data-start="0" data-end="<?php echo $total_vendors
+																		?>" data-postfix="" data-duration="1500" data-delay="0">0</div>
+
+							<h3>Vendors</h3>
+
+						</div>
+					<?php
+					} else if ($_SESSION['role'] == 2) {
+
+					?>
+
+						<div class="tile-stats tile-red">
+							<div class="icon"><i class="entypo-users"></i></div>
+							<div class="num" data-start="0" data-end="<?php echo $total_customers
+																		?>" data-postfix="" data-duration="1500" data-delay="0">0</div>
+
+							<h3>Customers</h3>
+
+						</div>
+					<?php
+
+					}
+					?>
+
 
 				</div>
 
@@ -99,10 +128,11 @@ if (empty($_COOKIE['remember_me'])) {
 
 					<div class="tile-stats tile-green">
 						<div class="icon"><i class="entypo-music"></i></div>
-						<div class="num" data-start="0" data-end="<?php echo "100"//$total_songs ?>" data-postfix="" data-duration="1500" data-delay="600">0</div>
+						<div class="num" data-start="0" data-end="<?php echo $total_orders
+																	?>" data-postfix="" data-duration="1500" data-delay="600">0</div>
 
-						<h3>Total Songs</h3>
-						
+						<h3>Active Orders</h3>
+
 					</div>
 
 				</div>
@@ -113,25 +143,15 @@ if (empty($_COOKIE['remember_me'])) {
 
 					<div class="tile-stats tile-blue">
 						<div class="icon"><i class="entypo-note"></i></div>
-						<div class="num" data-start="0" data-end="<?php echo "100" //$total_dj_sets ?>" data-postfix="" data-duration="1500" data-delay="1200">0</div>
+						<div class="num" data-start="0" data-end="<?php echo $total_products
+																	?>" data-postfix="" data-duration="1500" data-delay="1200">0</div>
 
-						<h3>Total DJ Sets</h3>
-					
+						<h3>Products</h3>
+
 					</div>
 
 				</div>
 
-				<div class="col-sm-3 col-xs-6">
-
-					<div class="tile-stats tile-black">
-						<div class="icon"><i class="entypo-floppy"></i></div>
-						<div class="num" data-start="0" data-end="<?php echo "100" //$total_show_episodes ?>" data-postfix="" data-duration="1500" data-delay="1800">0</div>
-
-						<h3>Total Show Episodes</h3>
-					
-					</div>
-
-				</div>
 			</div>
 
 

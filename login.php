@@ -98,9 +98,9 @@ session_start();
 							$_SESSION['price_per_litre'] = $result11["price_per_litre"];
 						}
 
-						// var_dump($_SESSION);
+						var_dump($_SESSION);
 
-						// var_dump($_COOKIE);
+						var_dump($_COOKIE);
 
 						header("location:index.php");
 					} else {

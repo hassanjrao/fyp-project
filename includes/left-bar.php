@@ -13,7 +13,22 @@
 			<!-- logo -->
 			<div class="logo">
 				<a href="index.php">
-					<img src="assets/images/logo@2x.png" width="120" alt="" />
+					<?php
+
+					if ($_SESSION['role'] == 1) {
+					?>
+						<h1 style="color: white;">Admin <br> Dashboard</h1>
+					<?php
+					}
+					else 
+					if ($_SESSION['role'] == 2) {
+					?>
+						<h1 style="color: white;">Vendor <br> Dashboard</h1>
+					<?php
+					}
+
+					?>
+
 				</a>
 			</div>
 
