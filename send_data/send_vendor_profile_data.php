@@ -105,7 +105,7 @@ if (isset($_POST['upd-submit'])) {
             $response_arr[0] = "success";
 
             $response_arr[1] = ' <div class="alert alert-success alert-dismissible" role="alert">
-    <strong>Congrats!</strong> Successfully Updated <hr> <a href="all_vendors.php">Back to all vendors</a>
+    <strong>Congrats!</strong> Successfully Updated
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>

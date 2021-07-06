@@ -20,6 +20,7 @@ if ($_SESSION['role'] != 2) {
 if (isset($_POST['add-submit'])) {
 
 
+    $product_name = $_POST["product_name"];
     $litre = $_POST["litre"];
     $price = $_POST["price"];
 
@@ -29,8 +30,9 @@ if (isset($_POST['add-submit'])) {
 
 
 
-    $stmt = $conn->prepare("INSERT INTO `products`(`litre`,`price`,`vendor_id`,`created_at`) VALUES (:litre,:price,:vendor_id,CURRENT_TIMESTAMP)");
+    $stmt = $conn->prepare("INSERT INTO `products`(`product_name`,`litre`,`price`,`vendor_id`,`created_at`) VALUES (:product_name,:litre,:price,:vendor_id,CURRENT_TIMESTAMP)");
 
+    $stmt->bindParam(':product_name', $product_name);
     $stmt->bindParam(':litre', $litre);
     $stmt->bindParam(':price', $price);
     $stmt->bindParam(':vendor_id', $vendor_id);
@@ -157,6 +159,14 @@ if (isset($_POST['add-submit'])) {
 
 
                             <form id="form" method="post" class="form-horizontal form-groups-bordered">
+
+                                <div class="form-group">
+                                    <label for="field-1" class="col-sm-3 control-label">Product Name</label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" name="product_name" class="form-control" placeholder="Product Name">
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-3 control-label">Litres</label>

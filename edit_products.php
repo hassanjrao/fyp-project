@@ -189,6 +189,14 @@ if (isset($_POST['upd-submit'])) {
                                 <input type="hidden" name="product_id" value=<?php echo $product_id; ?>>
 
                                 <div class="form-group">
+                                    <label for="field-1" class="col-sm-3 control-label">Product Name</label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" name="product_name" class="form-control" value="<?php echo $result["product_name"] ?>" placeholder="Product Name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="field-1" class="col-sm-3 control-label">Litres</label>
 
                                     <div class="col-sm-5">

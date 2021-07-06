@@ -134,6 +134,7 @@ if ($_SESSION['role'] != 2) {
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Product Name</th>
                         <th>Litre</th>
                         <th>Total Price</th>
                         <th>Created at</th>
@@ -162,6 +163,7 @@ if ($_SESSION['role'] != 2) {
 
                         <tr>
                             <td><?php echo $i++; ?></td>
+                            <td><?php echo $result["product_name"]; ?></td>
                             <td><?php echo $result["litre"]; ?></td>
                             <td><?php echo $result["price"]; ?></td>
                             <td><?php echo $result["created_at"]; ?></td>

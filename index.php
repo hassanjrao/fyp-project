@@ -58,9 +58,9 @@ if (empty($_COOKIE['remember_me'])) {
 			$query->execute();
 			$total_vendors = $query->rowCount();
 
-			$query = $conn->prepare("SELECT id from users where role='3'");
-			$query->execute();
-			$total_customers = $query->rowCount();
+			// $query = $conn->prepare("SELECT id from users where role='3'");
+			// $query->execute();
+			// $total_customers = $query->rowCount();
 
 
 			$query = $conn->prepare("SELECT id from orders");
@@ -88,12 +88,12 @@ if (empty($_COOKIE['remember_me'])) {
 
 
 			<div class="row">
-				<div class="col-sm-3 col-xs-6">
 
-					<?php
-					if ($_SESSION['role'] == 1) {
-					
-					?>
+				<?php
+				if ($_SESSION['role'] == 1) {
+
+				?>
+					<div class="col-sm-3 col-xs-6">
 
 						<div class="tile-stats tile-red">
 							<div class="icon"><i class="entypo-users"></i></div>
@@ -103,26 +103,27 @@ if (empty($_COOKIE['remember_me'])) {
 							<h3>Vendors</h3>
 
 						</div>
-					<?php
-					} else if ($_SESSION['role'] == 2) {
+					</div>
+				<?php
+				} //else if ($_SESSION['role'] == 2) {
 
-					?>
+				?>
 
-						<div class="tile-stats tile-red">
+				<!-- <div class="tile-stats tile-red">
 							<div class="icon"><i class="entypo-users"></i></div>
 							<div class="num" data-start="0" data-end="<?php echo $total_customers
 																		?>" data-postfix="" data-duration="1500" data-delay="0">0</div>
 
 							<h3>Customers</h3>
 
-						</div>
-					<?php
+						</div> -->
+				<?php
 
-					}
-					?>
+				//}
+				?>
 
 
-				</div>
+				<!-- </div> -->
 
 				<div class="col-sm-3 col-xs-6">
 
