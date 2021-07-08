@@ -1,6 +1,5 @@
 <?php
 
-//The api which is used by c# application to fetch the data from server.
 
 ob_start();
 include('../includes/db.php');
