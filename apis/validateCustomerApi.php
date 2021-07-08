@@ -3,7 +3,6 @@
 ob_start();
 include('../includes/db.php');
 
-
 $response = array();
 
 if (isTheseParametersAvailable(array('customer_email', 'customer_password'))) {
