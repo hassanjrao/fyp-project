@@ -6,16 +6,41 @@ include('../includes/db.php');
 $response = array();
 
 
-if (isTheseParametersAvailable(array('user_id', 'products'))) {
+if (isTheseParametersAvailable(array('vendor_id', 'customer_id', 'products','total_price'))) {
 
-    $user_id = $_POST["user_id"];
+
+    $customer_id = $_POST["customer_id"];
+    $vendor_id = $_POST["vendor_id"];
+
+    $total_price=$_POST["total_price"];
+
+ 
+    try {
+        $stmt = $conn->prepare("INSERT INTO `orders`( `vendor_id`,`customer_id`,`total_price`) VALUES (:vendor_id,:customer_id,:total_price)");
+        $stmt->bindParam(':vendor_id', $vendor_id);
+        $stmt->bindParam(':customer_id', $customer_id);
+        $stmt->bindParam(':total_price', $total_price);
+        $stmt->execute();
+
+        $order_id = $conn->lastInsertId();
+    } catch (PDOException $e) {
+
+        $response['error'] = true;
+        $response["status"] = "fail";
+        $response['message'] =  $e->getMessage();
+
+        echo json_encode($response);
+        die();
+    }
+
+
 
     foreach ($_POST["products"] as $key => $product) {
         # code...
 
         try {
-            $stmt = $conn->prepare("INSERT INTO `orders`( `user_id`,`product_id`,`created_at`) VALUES (:user_id,:product_id,CURRENT_TIMESTAMP)");
-            $stmt->bindParam(':user_id', $user_id);
+            $stmt = $conn->prepare("INSERT INTO `order_items`( `order_id`,`product_id`) VALUES (:order_id,:product_id)");
+            $stmt->bindParam(':order_id', $order_id);
             $stmt->bindParam(':product_id', $product);
             $stmt->execute();
         } catch (PDOException $e) {
@@ -23,6 +48,8 @@ if (isTheseParametersAvailable(array('user_id', 'products'))) {
             $response['error'] = true;
             $response["status"] = "fail";
             $response['message'] =  $e->getMessage();
+
+            echo json_encode($response);
             die();
         }
     }

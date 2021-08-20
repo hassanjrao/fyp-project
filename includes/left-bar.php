@@ -19,8 +19,7 @@
 					?>
 						<h1 style="color: white;">Admin <br> Dashboard</h1>
 					<?php
-					}
-					else 
+					} else 
 					if ($_SESSION['role'] == 2) {
 					?>
 						<h1 style="color: white;">Vendor <br> Dashboard</h1>
@@ -134,6 +133,14 @@
 			<?php
 			}
 			?>
+
+			<li class="">
+				<a href="all_orders.php">
+					<i class="entypo-gauge"></i>
+					<span class="title">Orders</span>
+				</a>
+
+			</li>
 
 
 

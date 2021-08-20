@@ -62,13 +62,14 @@ if (empty($_COOKIE['remember_me'])) {
 			// $query->execute();
 			// $total_customers = $query->rowCount();
 
+			$user_id = $_SESSION["user_id"];
 
-			$query = $conn->prepare("SELECT id from orders");
+			$query = $conn->prepare("SELECT id from orders where vendor_id='$user_id'");
 			$query->execute();
 			$total_orders = $query->rowCount();
 
 
-			$query = $conn->prepare("SELECT id from products");
+			$query = $conn->prepare("SELECT id from products where vendor_id='$user_id'");
 			$query->execute();
 			$total_products = $query->rowCount();
 
@@ -125,33 +126,47 @@ if (empty($_COOKIE['remember_me'])) {
 
 				<!-- </div> -->
 
-				<div class="col-sm-3 col-xs-6">
+				<?php
+				if ($_SESSION['role'] == 2) {
 
-					<div class="tile-stats tile-green">
-						<div class="icon"><i class="entypo-music"></i></div>
-						<div class="num" data-start="0" data-end="<?php echo $total_orders
-																	?>" data-postfix="" data-duration="1500" data-delay="600">0</div>
+				?>
+					<div class="col-sm-3 col-xs-6">
 
-						<h3>Active Orders</h3>
+						<div class="tile-stats tile-green">
+							<div class="icon"><i class="entypo-order"></i></div>
+							<div class="num" data-start="0" data-end="<?php echo $total_orders
+																		?>" data-postfix="" data-duration="1500" data-delay="600">0</div>
+
+							<h3>Active Orders</h3>
+
+						</div>
 
 					</div>
-
-				</div>
+				<?php
+				}
+				?>
 
 				<div class="clear visible-xs"></div>
 
-				<div class="col-sm-3 col-xs-6">
+				<?php
+				if ($_SESSION['role'] == 2) {
 
-					<div class="tile-stats tile-blue">
-						<div class="icon"><i class="entypo-note"></i></div>
-						<div class="num" data-start="0" data-end="<?php echo $total_products
-																	?>" data-postfix="" data-duration="1500" data-delay="1200">0</div>
+				?>
+					<div class="col-sm-3 col-xs-6">
 
-						<h3>Products</h3>
+						<div class="tile-stats tile-blue">
+							<div class="icon"><i class="entypo-not"></i></div>
+							<div class="num" data-start="0" data-end="<?php echo $total_products
+																		?>" data-postfix="" data-duration="1500" data-delay="1200">0</div>
+
+							<h3>Products</h3>
+
+						</div>
 
 					</div>
-
-				</div>
+				<?php
+				}
+				?>
 
 			</div>
 
