@@ -34,14 +34,15 @@ if (isTheseParametersAvailable(array('vendor_id', 'customer_id', 'products','tot
     }
 
 
-
+  
     foreach ($_POST["products"] as $key => $product) {
         # code...
 
         try {
-            $stmt = $conn->prepare("INSERT INTO `order_items`( `order_id`,`product_id`) VALUES (:order_id,:product_id)");
+            $stmt = $conn->prepare("INSERT INTO `order_items`( `order_id`,`product_id`,`quantity`) VALUES (:order_id,:product_id,:quantity)");
             $stmt->bindParam(':order_id', $order_id);
-            $stmt->bindParam(':product_id', $product);
+            $stmt->bindParam(':product_id', $product["product"]);
+            $stmt->bindParam(':quantity', $product["quantity"]);
             $stmt->execute();
         } catch (PDOException $e) {
 
@@ -59,7 +60,7 @@ if (isTheseParametersAvailable(array('vendor_id', 'customer_id', 'products','tot
 } else {
     $response['error'] = true;
     $response["status"] = "fail";
-    $response['message'] = 'required parameters are not available';
+    $response['message'] = 'required parameters are not available asdas';
 }
 
 echo json_encode($response);
@@ -69,7 +70,9 @@ function isTheseParametersAvailable($params) //method to check whther the varaib
 {
     foreach ($params as $param) {
         if (!isset($_POST[$param])) {
+            var_dump($_POST[$param]);
             return false;
+            
         }
     }
     return true;
