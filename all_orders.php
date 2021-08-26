@@ -184,10 +184,10 @@ if ($_SESSION['role'] != 2) {
 
 
                             <td>
-                                <a href="#" class="btn btn-primary btn-sm btn-icon icon-left">
+                                <!-- <a href="#" class="btn btn-primary btn-sm btn-icon icon-left">
                                     <i class="entypo-pencil"></i>
                                     Dispatch
-                                </a>
+                                </a> -->
 
                                 <a href="<?php echo "order.php?order_id=".$result["order_id"] ?>" class="btn btn-default btn-sm btn-icon icon-left">
                                     <i class="entypo-eye"></i>

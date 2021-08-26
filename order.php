@@ -27,6 +27,11 @@ if (!isset($_GET["order_id"])) {
 
     // var_dump($query->fetch(PDO::FETCH_ASSOC));
     $order = $query->fetchAll(PDO::FETCH_OBJ);
+
+    if(count($order)==0){
+        header('location:all_orders.php');
+    }
+    
 }
 
 ?>
@@ -36,7 +41,7 @@ if (!isset($_GET["order_id"])) {
 <head>
     <?php include_once("includes/head.php"); ?>
 
-    <title>Order #<?php $order_id ?></title>
+    <title>Order #<?php echo $order_id ?></title>
 </head>
 
 <body class="page-body" data-url="http://neon.dev">
@@ -77,7 +82,7 @@ if (!isset($_GET["order_id"])) {
                         </a>
                     </div>
                     <div class="col-sm-6 invoice-right">
-                        <h3>Order Id. <?php $order_id ?></h3>
+                        <h3>Order Id. #<?php echo $order_id ?></h3>
                         <span><?php echo $order[0]->order_date ?></span>
                     </div>
                 </div>
@@ -85,7 +90,8 @@ if (!isset($_GET["order_id"])) {
                 <div class="row">
                     <div class="col-sm-3 invoice-left">
                         <h4>Customer details</h4>
-                        <b> <?php echo $order[0]->name; ?></b>
+                        <b> <?php echo $order[0]->name; ?></b><br>
+                        <b> <?php echo $order[0]->email; ?></b>
 
                     </div>
                     <div class="col-sm-3 invoice-left">
