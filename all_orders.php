@@ -132,13 +132,12 @@ if ($_SESSION['role'] != 2) {
             <table class="table table-bordered datatable  dt-responsive nowrap" id="table-2">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>City</th>
-                        <th>Product</th>
-
+                        <th>#</th>
+                        <th>Order Id</th>
+                        <th>Cust. Name</th>
+                        <th>Cust. Email</th>
+                        <th>Cust. Address</th>
+                        <th>Cust. City</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -154,49 +153,54 @@ if ($_SESSION['role'] != 2) {
                     // var_dump($user_id);
 
                     $query = $conn->prepare(
-                        "SELECT * from orders join products on orders.product_id=products.id where orders.vendor_id='$user_id' order by orders.id desc"
+                        "SELECT orders.id order_id, users.* from orders join users on orders.customer_id=users.id  where vendor_id='$user_id' order by orders.id desc"
                     );
                     $query->execute();
 
                     // var_dump($query->fetch(PDO::FETCH_ASSOC));
                     while ($result = $query->fetch(PDO::FETCH_ASSOC)) {
 
-                        $v_id = $result["vendor_id"];
+                        // $v_id = $result["vendor_id"];
 
-                        $query2 = $conn->prepare(
-                            "SELECT * from users  where users.id='$v_id'"
-                        );
-                        $query2->execute();
+                        // $query2 = $conn->prepare(
+                        //     "SELECT * from users  where users.id='$v_id'"
+                        // );
+                        // $query2->execute();
 
-                        // var_dump($query->fetch(PDO::FETCH_ASSOC));
-                        while ($result2 = $query2->fetch(PDO::FETCH_ASSOC)) {
+                        // // var_dump($query->fetch(PDO::FETCH_ASSOC));
+                        // while ($result = $query2->fetch(PDO::FETCH_ASSOC)) {
 
                     ?>
 
-                            <tr>
-                                <td><?php echo $i++; ?></td>
-                                <td><?php echo $result2["name"]; ?></td>
-                                <td><?php echo $result2["email"]; ?></td>
-                                <td><?php echo $result2["address"]; ?></td>
-                                <td><?php echo $result2["city"]; ?></td>
-                                <td><?php echo $result["product_name"]; ?></td>
+                        <tr>
+                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $result["order_id"]; ?></td>
+                            <td><?php echo $result["name"]; ?></td>
+                            <td><?php echo $result["email"]; ?></td>
+                            <td><?php echo $result["address"]; ?></td>
+                            <td><?php echo $result["city"]; ?></td>
 
 
 
 
-                                <td>
-                                    <a href="#" class="btn btn-default btn-sm btn-icon icon-left">
-                                        <i class="entypo-pencil"></i>
-                                        Dispatch
-                                    </a>
+                            <td>
+                                <a href="#" class="btn btn-primary btn-sm btn-icon icon-left">
+                                    <i class="entypo-pencil"></i>
+                                    Dispatch
+                                </a>
+
+                                <a href="<?php echo "order.php?order_id=".$result["order_id"] ?>" class="btn btn-default btn-sm btn-icon icon-left">
+                                    <i class="entypo-eye"></i>
+                                    View
+                                </a>
 
 
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
 
                     <?php
-                        }
+                        // }
                     } ?>
 
 

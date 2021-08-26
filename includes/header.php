@@ -7,6 +7,9 @@
 	$query->execute();
 	$result = $query->fetch(PDO::FETCH_ASSOC);
 
+	$_SESSION["user_image"]=$result["image"];
+	$_SESSION["user_name"]=$result["name"];
+
 	?>
 
 	<ul class="user-info pull-left pull-none-xsm">
@@ -16,8 +19,8 @@
 			<!-- add class "pull-right" if you want to place this from right -->
 
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<img src=" <?php echo $result["image"] != NULL ? "images/vendor_images/" . $result['image'] : "assets/images/thumb-1@2x.png" ?>" alt="" class="img-circle" width="44" />
-				<?php echo ucwords($result["name"]); ?>
+				<img src=" <?php echo $_SESSION["user_image"] != NULL ? "images/vendor_images/" . $_SESSION["user_image"] : "assets/images/thumb-1@2x.png" ?>" alt="" class="img-circle" width="44" />
+				<?php echo ucwords($_SESSION["user_name"]); ?>
 			</a>
 
 			<ul class="dropdown-menu">

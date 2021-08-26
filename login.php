@@ -90,12 +90,14 @@ session_start();
 							setcookie("remember_me", $result11['id'], time() + (86400 * 30), "/"); // 86400 = 1 day
 							$_SESSION['user_id'] = $result11['id'];
 							$_SESSION["user_name"] = $result11['name'];
+							$_SESSION["user_image"] = $result11['image'];
 							$_SESSION['role'] = $result11["role"];
 							$_SESSION['price_per_litre'] = $result11["price_per_litre"];
 						} else {
 							$_SESSION['user_id'] = $result11['id'];
 							$_SESSION["user_name"] = $result11['name'];
 							$_SESSION['role'] = $result11["role"];
+							$_SESSION["user_image"] = $result11['image'];
 							$_SESSION['price_per_litre'] = $result11["price_per_litre"];
 						}
 
