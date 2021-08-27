@@ -134,6 +134,7 @@ if ($_SESSION['role'] != 2) {
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Product Image</th>
                         <th>Product Name</th>
                         <th>Litre</th>
                         <th>Total Price</th>
@@ -154,7 +155,7 @@ if ($_SESSION['role'] != 2) {
                     $vendor_id = $_SESSION["user_id"];
 
                     $query = $conn->prepare(
-                        "SELECT * from products where vendor_id='$vendor_id'"
+                        "SELECT * from products where vendor_id='$vendor_id' order by id desc"
                     );
                     $query->execute();
                     while ($result = $query->fetch(PDO::FETCH_ASSOC)) {
@@ -163,6 +164,7 @@ if ($_SESSION['role'] != 2) {
 
                         <tr>
                             <td><?php echo $i++; ?></td>
+                            <td> <img src="images/product_images/<?php echo $result["product_image"]; ?>"  width="100px" alt=""></td>
                             <td><?php echo $result["product_name"]; ?></td>
                             <td><?php echo $result["litre"]; ?></td>
                             <td><?php echo $result["price"]; ?></td>

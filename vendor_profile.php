@@ -262,7 +262,7 @@ if (empty($_COOKIE['remember_me'])) {
                             ?>
 
 
-                            <form id="form" class="form-horizontal form-groups-bordered">
+                            <form id="form" class="form-horizontal form-groups-bordered" enctype="multipart/form-data">
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Image</label>
@@ -370,7 +370,7 @@ if (empty($_COOKIE['remember_me'])) {
 
                                 <div class="form-group">
 
-                                    <label for="field-3" class="col-sm-3 control-label">Contry</label>
+                                    <label for="field-3" class="col-sm-3 control-label">Country</label>
 
 
                                     <div class="col-sm-5">

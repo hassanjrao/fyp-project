@@ -137,13 +137,13 @@ if($_SESSION['role']!=1){
                                 </div>
 
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="field-1" class="col-sm-3 control-label">Vendor Address</label>
 
                                     <div class="col-sm-5">
                                         <input type="text" name="address" value=<?php echo $result["address"]; ?> class="form-control" id="field-1" placeholder="Vendor Address">
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-3 control-label">Status</label>

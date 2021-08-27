@@ -24,7 +24,7 @@ if (isset($_POST['add-submit'])) {
     $name = $_POST["name"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $address = $_POST["address"];
+    // $address = $_POST["address"];
     $role = 2;
     $status = $_POST["status"];
 
@@ -51,13 +51,13 @@ if (isset($_POST['add-submit'])) {
 
 
 
-        $stmt = $conn->prepare("INSERT INTO `users`( `name`,`email`,`password`,`role`,`address`,`status`,`created_by`,`created_at`) VALUES (:name,:email,:password,:role,:address,:status,:created_by ,CURRENT_TIMESTAMP)");
+        $stmt = $conn->prepare("INSERT INTO `users`( `name`,`email`,`password`,`role`,`status`,`created_by`,`created_at`) VALUES (:name,:email,:password,:role,:status,:created_by ,CURRENT_TIMESTAMP)");
 
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':role', $role);
-        $stmt->bindParam(':address', $address);
+        // $stmt->bindParam(':address', $address);
         $stmt->bindParam(':status', $status);
         $stmt->bindParam(':created_by', $created_by);
 
@@ -98,7 +98,7 @@ if (isset($_POST['upd-submit'])) {
     $name = $_POST["name"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $address = $_POST["address"];
+    // $address = $_POST["address"];
     $role = 2;
     $status = $_POST["status"];
 
@@ -127,14 +127,14 @@ if (isset($_POST['upd-submit'])) {
     } else {
 
 
-        $stmt = $conn->prepare("UPDATE `users` SET name=:name,email=:email, password=:password,role=:role,address=:address,status=:status,updated_by=:updated_by,updated_at=CURRENT_TIMESTAMP WHERE id=:id");
+        $stmt = $conn->prepare("UPDATE `users` SET name=:name,email=:email, password=:password,role=:role,status=:status,updated_by=:updated_by,updated_at=CURRENT_TIMESTAMP WHERE id=:id");
 
 
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':role', $role);
-        $stmt->bindParam(':address', $address);
+        // $stmt->bindParam(':address', $address);
         $stmt->bindParam(':status', $status);
         $stmt->bindParam(':updated_by', $updated_by);
 

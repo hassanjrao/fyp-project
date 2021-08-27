@@ -24,14 +24,21 @@ if (isset($_POST['add-submit'])) {
     $litre = $_POST["litre"];
     $price = $_POST["price"];
 
+    $folder = "images/product_images/";
+    $image = time().$_FILES['image']['name'];
+    $path = $folder . $image;
+
+    move_uploaded_file($_FILES['image']['tmp_name'], $path);
+
 
     $vendor_id = $_SESSION["user_id"];
 
 
 
 
-    $stmt = $conn->prepare("INSERT INTO `products`(`product_name`,`litre`,`price`,`vendor_id`,`created_at`) VALUES (:product_name,:litre,:price,:vendor_id,CURRENT_TIMESTAMP)");
+    $stmt = $conn->prepare("INSERT INTO `products`(`product_image`,`product_name`,`litre`,`price`,`vendor_id`,`created_at`) VALUES (:product_image,:product_name,:litre,:price,:vendor_id,CURRENT_TIMESTAMP)");
 
+    $stmt->bindParam(':product_image', $image);
     $stmt->bindParam(':product_name', $product_name);
     $stmt->bindParam(':litre', $litre);
     $stmt->bindParam(':price', $price);
@@ -158,7 +165,30 @@ if (isset($_POST['add-submit'])) {
                         <div class="panel-body">
 
 
-                            <form id="form" method="post" class="form-horizontal form-groups-bordered">
+                            <form id="form" method="post" class="form-horizontal form-groups-bordered" enctype="multipart/form-data">
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Image Upload</label>
+
+                                    <div class="col-sm-5">
+
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+                                                <img src="http://placehold.it/200x150" alt="...">
+                                            </div>
+                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
+                                            <div>
+                                                <span class="btn btn-white btn-file">
+                                                    <span class="fileinput-new">Select image</span>
+                                                    <span class="fileinput-exists">Change</span>
+                                                    <input type="file" name="image" required >
+                                                </span>
+                                                <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-3 control-label">Product Name</label>
@@ -236,6 +266,7 @@ if (isset($_POST['add-submit'])) {
     <!-- Imported scripts on this page -->
     <script src="assets/js/bootstrap-switch.min.js"></script>
     <script src="assets/js/neon-chat.js"></script>
+    <script src="assets/js/fileinput.js"></script>
 
 
     <!-- JavaScripts initializations and stuff -->

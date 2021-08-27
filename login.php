@@ -68,7 +68,7 @@ session_start();
 
 
 
-					$query_user = $conn->prepare("SELECT * FROM users WHERE email = '$email' AND password = '$pass'");
+					$query_user = $conn->prepare("SELECT * FROM users WHERE email = '$email' AND password = '$pass' and status='active'");
 					$query_user->execute();
 					$result11 = $query_user->fetch(PDO::FETCH_ASSOC);
 

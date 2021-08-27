@@ -134,14 +134,21 @@
 			}
 			?>
 
-			<li class="">
-				<a href="all_orders.php">
-					<i class="entypo-gauge"></i>
-					<span class="title">Orders</span>
-				</a>
+			<?php
+			if ($_SESSION['role'] == 2) {
 
-			</li>
+			?>
+				<li class="">
+					<a href="all_orders.php">
+						<i class="entypo-gauge"></i>
+						<span class="title">Orders</span>
+					</a>
 
+				</li>
+
+			<?php
+			}
+			?>
 
 
 			<li class="">

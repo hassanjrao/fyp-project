@@ -28,6 +28,7 @@ if (isset($_POST['upd-submit'])) {
 
     $litre = $_POST["litre"];
     $price = $_POST["price"];
+    $product_name=$_POST["product_name"];
 
     $product_id = $_POST["product_id"];
 
@@ -37,12 +38,32 @@ if (isset($_POST['upd-submit'])) {
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $stmt = $conn->prepare("UPDATE `products` SET litre=:litre,price=:price, updated_at=CURRENT_TIMESTAMP WHERE id=:id");
+        if ($_FILES['image']['size'] == 0) {
 
-        $stmt->bindParam(':litre', $litre);
-        $stmt->bindParam(':price', $price);
-        $stmt->bindParam(':id', $product_id);
-       
+            $stmt = $conn->prepare("UPDATE `products` SET product_name=:product_name, litre=:litre,price=:price, updated_at=CURRENT_TIMESTAMP WHERE id=:id");
+
+            $stmt->bindParam(':product_name', $product_name);
+            $stmt->bindParam(':litre', $litre);
+            $stmt->bindParam(':price', $price);
+            $stmt->bindParam(':id', $product_id);
+        } else {
+
+            $folder = "images/product_images/";
+            $image = time().$_FILES['image']['name'];
+            $path = $folder . $image;
+        
+            move_uploaded_file($_FILES['image']['tmp_name'], $path);
+
+
+            $stmt = $conn->prepare("UPDATE `products` SET   product_image=:product_image, product_name=:product_name, litre=:litre,price=:price, updated_at=CURRENT_TIMESTAMP WHERE id=:id");
+
+            $stmt->bindParam(':product_image', $image);
+            $stmt->bindParam(':product_name', $product_name);
+            $stmt->bindParam(':litre', $litre);
+            $stmt->bindParam(':price', $price);
+            $stmt->bindParam(':id', $product_id);
+        }
+
         // use exec() because no results are returned
         $stmt->execute();
 
@@ -184,9 +205,32 @@ if (isset($_POST['upd-submit'])) {
 
 
 
-                            <form method="post" id="form" class="form-horizontal form-groups-bordered">
+                            <form method="post" id="form" class="form-horizontal form-groups-bordered" enctype="multipart/form-data">
 
                                 <input type="hidden" name="product_id" value=<?php echo $product_id; ?>>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Image Upload</label>
+
+                                    <div class="col-sm-5">
+
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+                                                <img src=" <?php echo $result["product_image"] != NULL ? "images/product_images/" . $result['product_image'] : "http://placehold.it/200x150" ?>" alt="...">
+                                            </div>
+                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
+                                            <div>
+                                                <span class="btn btn-white btn-file">
+                                                    <span class="fileinput-new">Select image</span>
+                                                    <span class="fileinput-exists">Change</span>
+                                                    <input type="file" name="image" required>
+                                                </span>
+                                                <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-3 control-label">Product Name</label>
@@ -259,6 +303,8 @@ if (isset($_POST['upd-submit'])) {
     <!-- Imported scripts on this page -->
     <script src="assets/js/bootstrap-switch.min.js"></script>
     <script src="assets/js/neon-chat.js"></script>
+    <script src="assets/js/fileinput.js"></script>
+
 
 
     <!-- JavaScripts initializations and stuff -->

@@ -75,7 +75,7 @@ if (isset($_POST['upd-submit'])) {
 
            
             $folder = "../images/vendor_images/";
-            $image =  $_FILES['image']['name'];
+            $image = time().$_FILES['image']['name'];
             $path = $folder . $image;
 
             move_uploaded_file($_FILES['image']['tmp_name'], $path);
