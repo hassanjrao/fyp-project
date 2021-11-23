@@ -20,7 +20,7 @@ try {
 
     $response['error'] = false;
     $response["status"] = "success";
-    $response['message'] = 'Fetched Successfully Successfully';
+    $response['message'] = 'Fetched Successfully';
     $response['result'] = $result;
    
 
