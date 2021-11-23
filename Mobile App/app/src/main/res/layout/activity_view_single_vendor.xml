@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewSingleVendor"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:layout_margin="10dp"
+    >
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_weight="30"
+        android:layout_height="250dp"
+        android:outlineSpotShadowColor="@color/colorAccent"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="50dp">
+        <ImageView
+            android:id="@+id/singleVendorImage"
+            android:layout_width="400dp"
+            android:layout_height="300dp"
+            android:layout_weight="10"
+            android:padding="10dp"
+
+            android:scaleType="fitCenter"
+            android:src="@drawable/vendorsss"
+            tools:ignore="ContentDescription" />
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="25 min"
+            android:background="@drawable/custom_button"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="210dp"
+            android:layout_marginLeft="25dp"
+            >
+        </TextView>
+
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Flat 10%"
+            android:background="@drawable/custom_button"
+            android:textSize="16dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+
+            >
+        </TextView>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="30dp"
+
+
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/colors"
+            android:orientation="vertical"
+
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/singleVendorName"
+                android:text="Vendor Name"
+                android:textColor="@color/colorAccent"
+                android:layout_weight="10"
+                android:textSize="24dp"
+                android:padding="10dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:id="@+id/singleVendorStatus"
+                android:text="Vendor Status"
+                android:textSize="18dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/singleVendorAddress"
+                android:padding="3dp"
+                android:text="Vendor Address"
+                android:textSize="18dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/singleVendorRating"
+                android:gravity="center"
+                android:drawableLeft="@drawable/ic_baseline_star_24"
+                android:padding="3dp"
+                android:text="Vendor Rating"
+                android:layout_weight="10"
+                android:textSize="18dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="20dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:background="@drawable/colors">-->
+
+        <Button
+            android:id="@+id/btnViewProducts"
+            android:layout_width="350dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="40dp"
+
+            android:layout_weight="10"
+            android:background="@drawable/colors"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:text="View Products"
+            android:textColor="@color/colorAccent"
+            android:textSize="22dp"
+            android:textStyle="bold"
+
+            />
+<!--    </androidx.cardview.widget.CardView>-->
+
+
+</LinearLayout>

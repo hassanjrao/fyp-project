@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/colors"
+    android:layout_height="match_parent"
+    tools:context=".OrderPlaced">
+
+    <ImageView
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/thankyou"/>
+
+    <TextView
+        android:layout_marginTop="420dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="28dp"
+        android:text="For Purchasing"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/custom_button"
+        android:textStyle="bold"
+        android:text="GO to Home"
+        android:id="@+id/btn_gotohome"
+        android:textSize="24dp"
+        android:drawableLeft="@drawable/ic_baseline_home_24"
+        android:paddingLeft="30dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+
+        >
+
+    </Button>
+
+
+
+</RelativeLayout>

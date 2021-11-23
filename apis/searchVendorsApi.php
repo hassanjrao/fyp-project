@@ -14,7 +14,7 @@ if (isTheseParametersAvailable(array('vendor_name'))) {
 
 
     try {
-        $query = $conn->prepare("SELECT * FROM users WHERE role='2' and name LIKE '$vendor_name'");
+        $query = $conn->prepare("SELECT * FROM users WHERE role='2' and name LIKE '$vendor_name%'");
         $query->execute();
 
         $result = $query->fetchAll(PDO::FETCH_OBJ);

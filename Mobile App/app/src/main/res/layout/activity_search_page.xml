@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchPage">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:weightSum="16"
+        android:background="@color/colorAccent">
+
+        <ImageView
+            android:src="@drawable/ic_baseline_navigate_before_24"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/searchBack"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content">
+
+        </ImageView>
+        <TextView
+            android:layout_weight="10"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:text="Search Results"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+        </TextView>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchStatus"
+        android:layout_marginTop="80dp"
+        android:text="matched results"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        >
+    </TextView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/search_r_view"
+        android:layout_marginTop="120dp"
+        android:layout_height="500dp">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</RelativeLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateProfile">
+
+    <EditText
+        android:id="@+id/txt_upName"
+        android:layout_width="336dp"
+        android:layout_height="67dp"
+        android:ems="10"
+
+        android:drawablePadding="12dp"
+        android:drawableLeft="@drawable/username"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.24" />
+
+    <EditText
+        android:id="@+id/txt_UpEmail"
+        android:layout_width="336dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+
+        android:drawablePadding="12dp"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_upName"
+        app:layout_constraintVertical_bias="0.007" />
+
+    <EditText
+        android:id="@+id/txt_UpAddress"
+        android:layout_width="332dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+
+        android:drawablePadding="12dp"
+        android:drawableLeft="@drawable/address"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+
+        android:inputType="textPersonName"
+        android:hint="Address"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_upPass"
+        app:layout_constraintVertical_bias="0.032" />
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="300dp"
+        android:layout_height="69dp"
+        android:text="Update Record"
+        android:textColor="#FFFF"
+        android:background="@drawable/custom_button"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_UpAddress"
+        app:layout_constraintVertical_bias="0.542" />
+
+    <EditText
+        android:id="@+id/txt_upPass"
+        android:layout_width="339dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Password"
+
+        android:drawablePadding="12dp"
+        android:drawableLeft="@drawable/lock"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_UpEmail"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <EditText
+        android:id="@+id/txt_userID"
+        android:layout_width="335dp"
+        android:layout_height="63dp"
+        android:ems="10"
+
+        android:drawablePadding="12dp"
+        android:drawableLeft="@drawable/username"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+
+        android:inputType="textPersonName"
+        android:hint="User ID"
+        app:layout_constraintBottom_toTopOf="@+id/txt_upName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

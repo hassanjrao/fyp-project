@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+    <EditText
+        android:id="@+id/customerName"
+        android:layout_width="365dp"
+        android:layout_height="69dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Full Name"
+
+        android:drawablePadding="12dp"
+        android:drawableLeft="@drawable/username"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slogan_start2"
+        app:layout_constraintVertical_bias="0.044"
+         />
+
+    <TextView
+        android:id="@+id/slogan_start2"
+        android:layout_width="451dp"
+        android:layout_height="66dp"
+        android:layout_marginBottom="540dp"
+        android:gravity="center"
+        android:text="Get Drinking Water at Your Doorstep"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.039" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="452dp"
+        android:layout_height="140dp"
+        app:layout_constraintBottom_toTopOf="@+id/slogan_start2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.457"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/customerEmail"
+        android:layout_width="365dp"
+        android:layout_height="69dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Email"
+
+        android:drawablePadding="12dp"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slogan_start2"
+        app:layout_constraintVertical_bias="0.216" />
+
+    <EditText
+        android:id="@+id/CustomerPassword"
+        android:layout_width="363dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Password"
+
+        android:drawablePadding="12dp"
+        android:drawableLeft="@drawable/lock"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customerEmail"
+        app:layout_constraintVertical_bias="0.067" />
+
+    <EditText
+        android:id="@+id/CustomerAddress"
+        android:layout_width="363dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:drawablePadding="12dp"
+        android:drawableLeft="@drawable/address"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+
+        android:hint="Address"
+        app:layout_constraintBottom_toTopOf="@+id/signUp_btn_SA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerPassword" />
+
+    <Button
+        android:id="@+id/signUp_btn_SA"
+        android:layout_width="349dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="48dp"
+        android:text="Sign Up"
+        android:textColor="#FFFF"
+        android:textSize="24sp"
+        android:background="@drawable/custom_button"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerPassword"
+        app:layout_constraintVertical_bias="0.88" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
